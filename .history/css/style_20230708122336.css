@@ -286,6 +286,85 @@ section h2 {
   max-width: 600px;
 }
 
+/* Hide the default radio button */
+[type='radio'] {
+  display: none;
+}
+
+/* Style the label to look like a button */
+[type='radio'] + label {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 30px;
+  background-color: #eee;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Style the checked radio button */
+[type='radio']:checked + label {
+  background-color: #333;
+  color: #eee;
+}
+
+/* Add a hover effect to the label */
+[type='radio'] + label:hover {
+  background-color: #ddd;
+}
+
+/* The container that holds the switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
+}
+
+/* The actual switch element */
+.switch input[type='checkbox'] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider (the part that moves) */
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: all 0.3s ease;
+}
+
+/* The slider when it's in the "on" position */
+.switch .slider::before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* The "on" state for the switch */
+.switch input[type='checkbox']:checked + .slider {
+  background-color: #2196f3;
+}
+
+.switch input[type='checkbox']:checked + .slider::before {
+  transform: translateX(26px);
+}
+
 .search-radio label {
   margin-right: 15px;
 }

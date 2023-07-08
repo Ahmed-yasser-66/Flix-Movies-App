@@ -286,6 +286,34 @@ section h2 {
   max-width: 600px;
 }
 
+/* Hide the default radio button */
+[type='radio'] {
+  display: none;
+}
+
+/* Style the label to look like a button */
+[type='radio'] + label {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 30px;
+  background-color: #eee;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Style the checked radio button */
+[type='radio']:checked + label {
+  background-color: #333;
+  color: #eee;
+}
+
+/* Add a hover effect to the label */
+[type='radio'] + label:hover {
+  background-color: #ddd;
+}
+
 .search-radio label {
   margin-right: 15px;
 }

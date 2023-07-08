@@ -250,8 +250,6 @@ function displayBackgroundImage(type, backgroundPath) {
 //Display search results
 async function displaySearchResults(results) {
   document.querySelector('#search-results').innerHTML = '';
-  document.querySelector('#search-results-heading').innerHTML = '';
-  document.querySelector('#pagination').innerHTML = '';
 
   results.forEach((result) => {
     const div = document.createElement('div');
@@ -323,13 +321,6 @@ function displayPagination() {
   //next page
   document.querySelector('#next').addEventListener('click', async () => {
     global.search.page++;
-    const { results, total_pages } = await searchAPIdata();
-    displaySearchResults(results);
-  });
-
-  //prev page
-  document.querySelector('#prev').addEventListener('click', async () => {
-    global.search.page--;
     const { results, total_pages } = await searchAPIdata();
     displaySearchResults(results);
   });

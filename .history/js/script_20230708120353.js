@@ -249,10 +249,6 @@ function displayBackgroundImage(type, backgroundPath) {
 
 //Display search results
 async function displaySearchResults(results) {
-  document.querySelector('#search-results').innerHTML = '';
-  document.querySelector('#search-results-heading').innerHTML = '';
-  document.querySelector('#pagination').innerHTML = '';
-
   results.forEach((result) => {
     const div = document.createElement('div');
     div.classList.add('card');
@@ -322,16 +318,8 @@ function displayPagination() {
 
   //next page
   document.querySelector('#next').addEventListener('click', async () => {
-    global.search.page++;
+    global.search.page += 1;
     const { results, total_pages } = await searchAPIdata();
-    displaySearchResults(results);
-  });
-
-  //prev page
-  document.querySelector('#prev').addEventListener('click', async () => {
-    global.search.page--;
-    const { results, total_pages } = await searchAPIdata();
-    displaySearchResults(results);
   });
 }
 
@@ -439,7 +427,7 @@ async function searchAPIdata() {
   showSpinner();
 
   const respone = await fetch(
-    `${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`
+    `${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}`
   );
 
   const data = await respone.json();

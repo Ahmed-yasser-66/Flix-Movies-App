@@ -329,7 +329,7 @@ function displayPagination() {
 
   //prev page
   document.querySelector('#prev').addEventListener('click', async () => {
-    global.search.page--;
+    global.search.page - 1;
     const { results, total_pages } = await searchAPIdata();
     displaySearchResults(results);
   });

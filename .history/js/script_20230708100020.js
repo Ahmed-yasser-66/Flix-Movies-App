@@ -5,7 +5,7 @@ const global = {
     type: '',
     page: 1,
     totalPages: 1,
-    totalResults: 0,
+    total_results: 0,
   },
   api: {
     api_key: '96a65ecbd7d37df355ec6689666cae6f',
@@ -249,10 +249,6 @@ function displayBackgroundImage(type, backgroundPath) {
 
 //Display search results
 async function displaySearchResults(results) {
-  document.querySelector('#search-results').innerHTML = '';
-  document.querySelector('#search-results-heading').innerHTML = '';
-  document.querySelector('#pagination').innerHTML = '';
-
   results.forEach((result) => {
     const div = document.createElement('div');
     div.classList.add('card');
@@ -288,50 +284,7 @@ async function displaySearchResults(results) {
           </div>
         `;
 
-    document.querySelector('#search-results-heading').innerHTML = `<h2>
-    ${results.length} of ${global.search.totalResults} Results for "${global.search.term}"
-    </h2>`;
-
     document.getElementById('search-results').appendChild(div);
-  });
-
-  displayPagination();
-}
-
-//Create & Display Pagination
-function displayPagination() {
-  const div = document.createElement('div');
-  div.classList.add('pagination');
-  div.innerHTML = `
-  <button class="btn btn-primary" id="prev">Prev</button>
-  <button class="btn btn-primary" id="next">Next</button>
-  <div class="page-counter">Page ${global.search.page} of ${global.search.totalPages}</div>
-  `;
-
-  document.querySelector('#pagination').appendChild(div);
-
-  //disable prev btn if in first page
-  if (global.search.page === 1) {
-    document.querySelector('#prev').disabled = true;
-  }
-
-  //disable next btn if in last page
-  if (global.search.page === global.search.totalPages) {
-    document.querySelector('#next').disabled = true;
-  }
-
-  //next page
-  document.querySelector('#next').addEventListener('click', async () => {
-    global.search.page++;
-    const { results, total_pages } = await searchAPIdata();
-    displaySearchResults(results);
-  });
-
-  //prev page
-  document.querySelector('#prev').addEventListener('click', async () => {
-    global.search.page--;
-    const { results, total_pages } = await searchAPIdata();
-    displaySearchResults(results);
   });
 }
 
@@ -372,11 +325,7 @@ async function search() {
   global.search.term = urlParams.get('search-term');
 
   if (global.search.term !== '' && global.search.term !== null) {
-    const { results, total_pages, page, total_results } = await searchAPIdata();
-
-    global.search.page = page;
-    global.search.totalPages = total_pages;
-    global.search.totalResults = total_results;
+    const { results, total_pages, page } = await searchAPIdata();
 
     if (results.length === 0) {
       showAlert('No results found');
@@ -439,7 +388,7 @@ async function searchAPIdata() {
   showSpinner();
 
   const respone = await fetch(
-    `${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`
+    `${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}`
   );
 
   const data = await respone.json();

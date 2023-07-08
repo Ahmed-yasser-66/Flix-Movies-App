@@ -290,6 +290,62 @@ section h2 {
   margin-right: 15px;
 }
 
+/* Style the container */
+.search-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the label to look like a button */
+.search-radio label {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 30px;
+  background-color: #eee;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Style the checked radio button */
+.search-radio input[type='radio']:checked + label {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+/* Hide the default radio button */
+.search-radio input[type='radio'] {
+  display: none;
+}
+
+/* Customize the radio button graphics */
+.search-radio input[type='radio'] + label:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.search-radio input[type='radio']:checked + label:before {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+/* Add some animation to the radio buttons */
+.search-radio input[type='radio'] + label:before {
+  transition: all 0.3s ease;
+}
+
+.search-radio input[type='radio']:checked + label:before {
+  transform: translateX(30px);
+}
+
 .search-flex {
   display: flex;
   justify-content: space-between;

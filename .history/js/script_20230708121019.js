@@ -326,13 +326,6 @@ function displayPagination() {
     const { results, total_pages } = await searchAPIdata();
     displaySearchResults(results);
   });
-
-  //prev page
-  document.querySelector('#prev').addEventListener('click', async () => {
-    global.search.page--;
-    const { results, total_pages } = await searchAPIdata();
-    displaySearchResults(results);
-  });
 }
 
 //Display Movies Slider
